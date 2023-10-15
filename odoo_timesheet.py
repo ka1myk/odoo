@@ -1,12 +1,16 @@
+from pprint import pprint
+
 import telebot, datetime, json, random, urllib.request
 
-HOST = ''
+HOST = '62.217.177.120'
 PORT = 8069
-DB = ''
-USER = ''
-PASS = ''
+DB = 'odoo'
+USER = 'k@lmyk.ru'
+PASS = 'Kalmyk244kk_'
 
-BOT_TOKEN = ""
+BOT_TOKEN = "6617187050:AAH20Z6kiZMp00ipU3_IKG8EmpKfVpdjBAU"
+
+bot = telebot.TeleBot(BOT_TOKEN)
 
 
 def json_rpc(url, method, params):
@@ -33,19 +37,11 @@ def call(url, service, method, *args):
 url = "http://%s:%s/jsonrpc" % (HOST, PORT)
 uid = call(url, "common", "login", DB, USER, PASS)
 
+# create a new note
+args = {
+'company_id': 1,
+'kanban_state': 'normal',
+'name': 'test'
+}
 
-@bot.message_handler(func=lambda msg: True)
-def echo_all(message):
-    memo = str(datetime.datetime.fromtimestamp(message.date).strftime('%d-%m %H:%M')), str(message.text)
-
-    # create a new note
-    args = {
-        'color': 8,
-        'memo': memo,
-        'create_uid': uid,
-    }
-
-    note_id = call(url, "object", "execute", DB, uid, PASS, 'project.task', 'create', args)
-
-
-bot.infinity_polling()
+pprint(call(url, "object", "execute", DB, uid, PASS, 'project.task', 'search_read', args))
