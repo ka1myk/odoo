@@ -1,12 +1,12 @@
 import telebot, datetime, json, random, urllib.request
 
-HOST = '62.217.177.120'
+HOST = ''
 PORT = 8069
-DB = 'odoo'
-USER = 'k@lmyk.ru'
-PASS = 'Kalmyk244kk_'
+DB = ''
+USER = ''
+PASS = ''
 
-BOT_TOKEN = "5704394405:AAEQcpb0t8GJ69imJXVbn7d2fdAbc0hScmE"
+BOT_TOKEN = ":"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
